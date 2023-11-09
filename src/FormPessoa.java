@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 
 public class FormPessoa extends Frame{
     //LABELS
@@ -25,6 +26,11 @@ public class FormPessoa extends Frame{
     private Container up2Container = new Container();
     private Container midContainer = new Container();
     private Container lowerContainer = new Container();
+
+    //DATABASE
+    private String urlString = "jdbc:sqlserver://127.0.0.1\\LENOVO-IDEAPAD3-RONALD;databaseName=Company;integratedSecurity=true";
+    private Connection con; 
+
 
     public FormPessoa(String nome, int altura, int largura){
         super(nome);
@@ -58,6 +64,14 @@ public class FormPessoa extends Frame{
         lowerContainer.add(nextButton);
         add(lowerContainer, BorderLayout.SOUTH);
         setVisible(true);
+
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            con = DriverManager.getConnection(urlString);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            System.out.println("Parou de funcionar no primeiro try");
+        }
     }
 
     public void actionPerformed(ActionEvent e){
