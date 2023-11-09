@@ -28,7 +28,7 @@ public class FormPessoa extends Frame{
     private Container lowerContainer = new Container();
 
     //DATABASE
-    private String urlString = "jdbc:sqlserver://127.0.0.1\\LENOVO-IDEAPAD3-RONALD;databaseName=Company;integratedSecurity=true";
+    private String urlString = "jdbc:sqlserver://127.0.0.1\\LENOVO-IDEAPAD3-RONALD:1434;databaseName=Company;integratedSecurity=true";
     private Connection con; 
 
 
@@ -67,6 +67,7 @@ public class FormPessoa extends Frame{
 
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            System.out.println("Rodou até aqui");
             con = DriverManager.getConnection(urlString);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
